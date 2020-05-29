@@ -11,6 +11,7 @@ Empleado::Empleado(string nombre,int edad,int nivel,int habilidad,int pereza)
 	this->nivel=nivel;
 	this->habilidad=habilidad;
 	this->pereza=pereza;
+	this->tarea=NULL;
 }
 
 string Empleado::getNombre(){
@@ -53,6 +54,14 @@ int Empleado::getPereza(){
 
 void Empleado::setPereza(){
 	this->pereza=pereza;
+}
+
+Tarea* Empleado::getTarea(){
+	return this->tarea;
+}
+
+void Empleado::setTarea(Tarea* tarea){
+	this->tarea=tarea;
 }
 
 Empleado::~Empleado()

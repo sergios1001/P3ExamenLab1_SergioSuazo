@@ -1,6 +1,7 @@
 #ifndef EMPLEADO_H
 #define EMPLEADO_H
 #include <string>
+#include "Tarea.h"
 
 using namespace std;
 class Empleado
@@ -21,6 +22,8 @@ class Empleado
 		void setHabilidad(int);
 		int getPereza();
 		void setPereza();
+		Tarea* getTarea();
+		void setTarea(Tarea*);
 		
 		
 		//destructor
@@ -28,6 +31,7 @@ class Empleado
 	protected:
 		string nombre;
 		int edad,nivel,habilidad,pereza;
+		Tarea* tarea;
 };
 
 #endif

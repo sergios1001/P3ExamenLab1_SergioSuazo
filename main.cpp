@@ -75,7 +75,7 @@ vector <Tarea*> backlog;
 
 int main(int argc, char** argv) {
 	int option=0;
-	while( option != 3 ) {
+	while( option != 7 ) {
 		
 		switch( option = menu() ){ 
 		
@@ -100,25 +100,77 @@ int main(int argc, char** argv) {
 				break;
 			}
 			case 2:{
+				int despide;
 				for(int i=0;i<empleados.size();i++){
-					
+					cout<<i<<"- "<<empleados[i]->getNombre()<<endl;
 				}
+				cout<<"Elija el empleado al que quiere despedir: ";
+				cin>>despide;
 				
+				empleados.erase(empleados.begin() + despide);
 				break;	
 			} 
 			    
 			case 3:{
-
+				cout<<"Lista de Empleados: "<<endl;
+				for(int i=0;i<empleados.size();i++){
+					cout<<i<<"- "<<empleados[i]->getNombre()<<endl;
+				}
 				break;
 
 			}
 			case 4:{
+				string descripcion;
+				int nivel,carga;
+				cout<<"Ingrese la descripcion de la Tarea: ";
+				cin>>descripcion;
+				cout<<"Nivel de la tarea: ";
+				cin>>nivel;
+				cout<<"Carga de la tarea: ";
+				cin>>carga;
+				
+				backlog.push_back(new Tarea(descripcion,nivel,carga));
 				break;
 			}
 			case 5:{
+				cout<<"Lista de Tareas: "<<endl;
+				for(int i=0;i<backlog.size();i++){
+					cout<<i<<"- "<<backlog[i]->getDescripcion()<<endl;
+				}
 				break;
 			}
 			case 6:{
+				int sel=0;
+				int cargaTotal=0;
+				int proyeccion;
+				
+				int perezosos=0,fallido=0,exitoso=0;
+				for(int i=0;i<backlog.size();i++){
+					cargaTotal+=backlog[i]->getCarga();
+				}
+				proyeccion=cargaTotal+cargaTotal*.2;
+				//cout<<cargaTotal<<endl;
+				while(sel!=3 && cargaTotal!=0){
+					
+					cout<<"Dias para terminar el proyecto: "<< proyeccion <<endl;
+					
+					switch( sel = menu2()){
+						
+						case 1:{
+							
+							break;
+						}
+						case 2:{
+							break;
+						}
+						case 3:{
+							//salir
+							cout<<"Saliendo de la simulacion..."<<endl;
+							break;
+						}
+					}
+				}
+				
 				break;
 			}
 			case 7:{
