@@ -1,4 +1,9 @@
 #include <iostream>
+#include <string>
+#include <vector>
+#include "Empleado.h"
+#include "Tarea.h"
+
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -7,7 +12,7 @@ int menu(){
 	
 	while(retValue < 1 || retValue > 7){
 		
-		cout<<"------------------"<<endl
+		cout<<"----------------------"<<endl
 			<<"1.- Contratar Empleado"<<endl
 			<<"2.- Despedir Empleado"<<endl
 			<<"3.- Listar Empleados"<<endl
@@ -65,6 +70,9 @@ int menu2(){
 	return retValue;
 }
 
+vector <Empleado*> empleados; 
+vector <Tarea*> backlog;
+
 int main(int argc, char** argv) {
 	int option=0;
 	while( option != 3 ) {
@@ -72,11 +80,30 @@ int main(int argc, char** argv) {
 		switch( option = menu() ){ 
 		
 			case 1:{
-
+				string nombre;
+				int edad,nivel,habilidad,pereza;
+				cout<<"Nombre del Empleado: ";
+				cin>>nombre;
+				cout<<"Edad: ";
+				cin>>edad;
+				cout<<"Nivel: ";
+				cin>>nivel;
+				cout<<"Porcentaje de Habilidad: ";
+				cin>>habilidad;
+				cout<<"Porcentaje de Pereza: ";
+				cin>>pereza;
+				
+				empleados.push_back(new Empleado(nombre,edad,nivel,habilidad,pereza));
+				
+				cout<<"Se contrato al empleado exitosamente"<<endl;
+				
 				break;
 			}
 			case 2:{
-			
+				for(int i=0;i<empleados.size();i++){
+					
+				}
+				
 				break;	
 			} 
 			    
