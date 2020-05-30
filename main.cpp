@@ -87,16 +87,31 @@ int main(int argc, char** argv) {
 				cin>>nombre;
 				cout<<"Edad: ";
 				cin>>edad;
-				cout<<"Nivel: ";
+				cout<<"Nivel (1-3): ";
 				cin>>nivel;
-				cout<<"Porcentaje de Habilidad: ";
+				while(nivel<1||nivel>3)
+				{
+					cout<<"Ingreso incorrecto, Nivel (1-3): ";
+					cin>>nivel;
+				}
+				cout<<"Porcentaje de Habilidad (1-100): ";
 				cin>>habilidad;
-				cout<<"Porcentaje de Pereza: ";
+				while(habilidad<1||habilidad>100)
+				{
+					cout<<"Ingreso incorrecto, Porcentaje de Habilidad (1-100): ";
+					cin>>habilidad;
+				}
+				cout<<"Porcentaje de Pereza (1-100): ";
 				cin>>pereza;
-				
+				while(pereza<1||pereza>100)
+				{
+					cout<<"Ingreso incorrecto, Porcentaje de Pereza (1-100): ";
+					cin>>pereza;
+				}
 				empleados.push_back(new Empleado(nombre,edad,nivel,habilidad,pereza));
 				
 				cout<<"Se contrato al empleado exitosamente"<<endl;
+				
 				
 				break;
 			}
@@ -109,6 +124,8 @@ int main(int argc, char** argv) {
 				cin>>despide;
 				
 				empleados.erase(empleados.begin() + despide);
+				
+				cout<<"Se despidio al empleado exitosamente"<<endl;
 				break;	
 			} 
 			    
@@ -125,8 +142,13 @@ int main(int argc, char** argv) {
 				int nivel,carga;
 				cout<<"Ingrese la descripcion de la Tarea: ";
 				cin>>descripcion;
-				cout<<"Nivel de la tarea: ";
+				cout<<"Nivel de la tarea (1-3): ";
 				cin>>nivel;
+				while(nivel<1||nivel>3)
+				{
+					cout<<"Ingreso incorrecto, Nivel (1-3): ";
+					cin>>nivel;
+				}
 				cout<<"Carga de la tarea: ";
 				cin>>carga;
 				
@@ -206,6 +228,11 @@ int main(int argc, char** argv) {
 							
 							proyeccion--;
 							
+							if(cargaTotal==0)
+							{
+								cout<<"Fin del proyecto con "<<proyeccion<<" dias faltantes"<<endl;
+							}
+							
 							break;
 						}
 						case 2:{
@@ -213,8 +240,8 @@ int main(int argc, char** argv) {
 							cout<<"Tareas en backlog: "<<backlog.size()<<endl;
 							cout<<"Tareas en progreso: "<<progreso<<endl;
 							cout<<"Empleados perezosos: "<<perezosos<<endl;
-							cout<<"Empleados que fallaron: "<<backlog.size()<<endl;
-							cout<<"Empleados que lograron el dia: "<<backlog.size()<<endl;
+							cout<<"Empleados que fallaron: "<<fallido<<endl;
+							cout<<"Empleados que lograron el dia: "<<exitoso<<endl;
 							break;
 						}
 						case 3:{
