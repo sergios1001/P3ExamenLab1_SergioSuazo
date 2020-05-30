@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stdlib.h>
 #include "Empleado.h"
 #include "Tarea.h"
 
@@ -144,7 +145,7 @@ int main(int argc, char** argv) {
 				int cargaTotal=0;
 				int proyeccion;
 				
-				int perezosos=0,fallido=0,exitoso=0;
+				int perezosos=0,fallido=0,exitoso=0,progreso=0;
 				for(int i=0;i<backlog.size();i++){
 					cargaTotal+=backlog[i]->getCarga();
 				}
@@ -157,10 +158,63 @@ int main(int argc, char** argv) {
 					switch( sel = menu2()){
 						
 						case 1:{
+							perezosos=0;
+							fallido=0;
+							exitoso=0;
+							
+							for(int i=0;i<empleados.size();i++){
+								if(empleados[i]->getTarea()==NULL){
+									for(int j=0;j<backlog.size();j++){
+										if(empleados[i]->getNivel()>=backlog[j]->getNivel())
+										{
+											empleados[i]->setTarea(backlog[j]);
+											backlog.erase(backlog.begin() + j);
+											progreso++;
+											break;
+										}
+									}	
+								}
+							}
+							
+							for(int i=0;i<empleados.size();i++){
+								if(empleados[i]->getTarea()!=NULL){
+									int pereza = rand() % 101;
+									if(empleados[i]->getPereza() < pereza){
+										int habilidad = rand() % 101;
+										if(empleados[i]->getHabilidad()>=habilidad){
+											
+											empleados[i]->getTarea()->setCarga(empleados[i]->getTarea()->getCarga() - 1 );
+											if(empleados[i]->getTarea()->getCarga()==0)
+											{
+												empleados[i]->setTarea(NULL);
+												progreso--;
+											}
+											cargaTotal--;
+											exitoso++;
+										}
+										else
+										{
+											fallido++;
+										}
+									}
+									else
+									{
+										perezosos++;
+									}
+								}
+							}
+							
+							proyeccion--;
 							
 							break;
 						}
 						case 2:{
+							
+							cout<<"Tareas en backlog: "<<backlog.size()<<endl;
+							cout<<"Tareas en progreso: "<<progreso<<endl;
+							cout<<"Empleados perezosos: "<<perezosos<<endl;
+							cout<<"Empleados que fallaron: "<<backlog.size()<<endl;
+							cout<<"Empleados que lograron el dia: "<<backlog.size()<<endl;
 							break;
 						}
 						case 3:{
