@@ -264,5 +264,8 @@ int main(int argc, char** argv) {
 		}//switch
 	
 	}//while
+	
+	empleados.erase(empleados.begin());
+	backlog.erase(backlog.begin());
 	return 0;
 }
